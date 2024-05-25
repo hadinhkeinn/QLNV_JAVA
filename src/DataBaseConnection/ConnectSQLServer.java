@@ -14,7 +14,7 @@ public class ConnectSQLServer {
 
     private static final String url = "jdbc:sqlserver://localhost:1433;"
             + "encrypt=true;trustServerCertificate=true;"
-            + "databaseName=QLNV_JAVA;";
+            + "databaseName=QLNV_APP;";
     private static final String username = "sa";
     private static final String password = "sa";
     private String dbName;

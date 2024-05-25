@@ -5,6 +5,7 @@
 package main;
 
 import java.sql.SQLException;
+import view.Home;
 import view.MainView;
 
 /**
@@ -19,7 +20,9 @@ public class Main {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        MainView mainView = new MainView();
-        mainView.display();
+//        MainView mainView = new MainView();
+//        mainView.display();
+        Home home = new Home();
+        home.display();
     }
 }

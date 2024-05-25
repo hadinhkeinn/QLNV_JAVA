@@ -8,10 +8,14 @@ package model;
  *
  * @author admin
  */
-public class NhanVien implements InterfaceNhanVien, InterfaceQuanLy {
+public class NhanVien implements InterfaceNhanVien {
 
     protected int maNV;
     protected String hoTen;
+    protected String gioiTinh;
+    protected String queQuan;
+    protected String ngaySinh;
+    protected String soDT;
     protected float luongCB;
     protected int ngayLV;
     protected double luongThang;
@@ -38,17 +42,7 @@ public class NhanVien implements InterfaceNhanVien, InterfaceQuanLy {
         this.luongThang = this.luongCB + this.ngayLV * 100000;
         return this.luongThang;
     }
-
-    @Override
-    public void hienThi() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void quanLy() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
     @Override
     public int getMaNV() {
         return this.maNV;
@@ -72,6 +66,66 @@ public class NhanVien implements InterfaceNhanVien, InterfaceQuanLy {
     @Override
     public double getLuongThang() {
         return this.luongThang;
+    }
+
+    @Override
+    public String getGioiTinh() {
+        return this.gioiTinh;
+    }
+
+    @Override
+    public String getQueQuan() {
+        return this.queQuan;
+    }
+
+    @Override
+    public String getNgaySinh() {
+        return this.ngaySinh;
+    }
+
+    @Override
+    public String getSoDT() {
+        return this.soDT;
+    }
+
+    @Override
+    public void setHoTen(String ten) {
+        this.hoTen = ten;
+    }
+
+    @Override
+    public void setGioiTinh(String gt) {
+        this.gioiTinh = gt;
+    }
+
+    @Override
+    public void setQueQuan(String qq) {
+        this.queQuan = qq;
+    }
+
+    @Override
+    public void setNgaySinh(String ns) {
+        this.ngaySinh = ns;
+    }
+
+    @Override
+    public void setSoDT(String sdt) {
+        this.soDT = sdt;
+    }
+
+    @Override
+    public void setLuongCB(float luongCB) {
+        this.luongCB = luongCB;
+    }
+
+    @Override
+    public void setNgayLV(int ngayLV) {
+        this.ngayLV = ngayLV;
+    }
+
+    @Override
+    public void setLuongThang(double luongNew) {
+        this.luongThang = luongNew;
     }
 
 }
