@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package view;
+package view.admin;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DanhSachNhanVien extends javax.swing.JPanel {
     
-    private static String dataColumn[] = {"Mã NV", "Họ tên", "Lương CB", "Ngày LV", "Lương tháng", "Loại NV"};
+    private static String dataColumn[] = {"Mã NV", "Họ tên", "Dân tộc", "Giới tính", "Quê quán", "Ngày sinh", "SĐT"};
     private DefaultTableModel model;
     /**
      * Creates new form DanhSachNhanVien

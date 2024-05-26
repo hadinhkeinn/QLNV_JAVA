@@ -5,8 +5,9 @@
 package main;
 
 import java.sql.SQLException;
-import view.Home;
-import view.MainView;
+import model.NhanVienDAO;
+import view.admin.Home;
+import view.admin.MainView;
 
 /**
  *
@@ -23,6 +24,6 @@ public class Main {
 //        MainView mainView = new MainView();
 //        mainView.display();
         Home home = new Home();
-        home.display();
+        home.display();       
     }
 }

@@ -17,39 +17,27 @@ public class ConnectSQLServer {
             + "databaseName=QLNV_APP;";
     private static final String username = "sa";
     private static final String password = "sa";
-    private String dbName;
 
-    private Connection conn;
-
-    public ConnectSQLServer() throws SQLException {
+    public static Connection getConnection() {
+        Connection con = null;
         try {
-            this.conn = DriverManager.getConnection(url, username, password);
-        } catch (SQLException ex) {
-            System.out.println("Cannot connect database, " + ex);
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            try {
+                con = DriverManager.getConnection(url, username, password);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
+        return con;
     }
 
-    public void testConnection() throws SQLException {
+    public static void closeConnection(Connection con) {
         try {
-            System.out.println("Connected");
-            DatabaseMetaData dm = (DatabaseMetaData) this.conn.getMetaData();
-            System.out.println("Driver name: " + dm.getDriverName());
-            System.out.println("Driver version: " + dm.getDriverVersion());
-            System.out.println("Product name: " + dm.getDatabaseProductName());
-            System.out.println("Product version: " + dm.getDatabaseProductVersion());
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    public ResultSet queryDB(String query) throws SQLException {
-        try {
-            Statement stmt = this.conn.createStatement();
-
-            return stmt.executeQuery(query);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-            return null;
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

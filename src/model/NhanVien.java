@@ -10,22 +10,22 @@ package model;
  */
 public class NhanVien implements InterfaceNhanVien {
 
-    protected int maNV;
+    protected String maNV;
     protected String hoTen;
+    protected String danToc;
     protected String gioiTinh;
     protected String queQuan;
     protected String ngaySinh;
     protected String soDT;
-    protected float luongCB;
-    protected int ngayLV;
-    protected double luongThang;
 
-    public NhanVien(int maNV, String hoTen, float luongCB, int ngayLV) {
+    public NhanVien(String maNV, String hoTen, String danToc, String gioiTinh, String queQuan, String ngaySinh, String soDT) {
         this.maNV = maNV;
         this.hoTen = hoTen;
-        this.luongCB = luongCB;
-        this.ngayLV = ngayLV;
-        this.luongThang = 0;
+        this.danToc = danToc;
+        this.gioiTinh = gioiTinh;
+        this.queQuan = queQuan;
+        this.ngaySinh = ngaySinh;
+        this.soDT = soDT;
     }
 
     @Override
@@ -33,39 +33,14 @@ public class NhanVien implements InterfaceNhanVien {
         return this.maNV + " - " + this.hoTen;
     }
 
-    public void println() {
-        System.out.printf("%6d | %20s%5s| %15.1f | %10.1f \n", maNV, hoTen, " ", luongCB, luongThang);
-    }
-
     @Override
-    public double tinhLuong() {
-        this.luongThang = this.luongCB + this.ngayLV * 100000;
-        return this.luongThang;
-    }
-    
-    @Override
-    public int getMaNV() {
+    public String getMaNV() {
         return this.maNV;
     }
 
     @Override
     public String getHoTen() {
         return this.hoTen;
-    }
-
-    @Override
-    public float getLuongCB() {
-        return this.luongCB;
-    }
-
-    @Override
-    public int getNgayLV() {
-        return this.ngayLV;
-    }
-
-    @Override
-    public double getLuongThang() {
-        return this.luongThang;
     }
 
     @Override
@@ -112,20 +87,4 @@ public class NhanVien implements InterfaceNhanVien {
     public void setSoDT(String sdt) {
         this.soDT = sdt;
     }
-
-    @Override
-    public void setLuongCB(float luongCB) {
-        this.luongCB = luongCB;
-    }
-
-    @Override
-    public void setNgayLV(int ngayLV) {
-        this.ngayLV = ngayLV;
-    }
-
-    @Override
-    public void setLuongThang(double luongNew) {
-        this.luongThang = luongNew;
-    }
-
 }
