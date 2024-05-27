@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 import DAO.NhanVienDAO;
 import model.NhanVien;
+import utils.LoadDuLieuTable;
 
 /**
  *
@@ -83,14 +84,8 @@ public class DanhSachNhanVien extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void hienThiDuLieuNV() {
-        ArrayList<NhanVien> dataNV = NhanVienDAO.getDS();
-        int soNV = dataNV.size();
-        Object[][] data = new Object[soNV][];
-        for (int i = 0; i < soNV; i++) {
-
-            Object[] rowData = new Object[]{dataNV.get(i).getMaNV(), dataNV.get(i).getHoTen(), dataNV.get(i).getDanToc(), dataNV.get(i).getGioiTinh(), dataNV.get(i).getQueQuan(), dataNV.get(i).getNgaySinh(), dataNV.get(i).getSoDT()};
-            data[i] = rowData;
-        }
+        ArrayList<NhanVien> dataList = NhanVienDAO.getDS();
+        Object[][] data = LoadDuLieuTable.chuyenSangObj(dataList);
         
         tableDsNvModel = new DefaultTableModel(data, dataColumn);
         dsNhanVien.setModel(tableDsNvModel);
@@ -99,9 +94,11 @@ public class DanhSachNhanVien extends javax.swing.JPanel {
     public void setTableNvModel(DefaultTableModel md) {
         this.tableDsNvModel = md;
     }
+
     public DefaultTableModel getTableNvModel() {
         return this.tableDsNvModel;
     }
+
     public javax.swing.JTable getDsNhanVien() {
         return this.dsNhanVien;
     }
