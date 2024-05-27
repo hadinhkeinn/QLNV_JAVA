@@ -171,7 +171,7 @@ public class DangNhap extends javax.swing.JFrame {
                     } else if (rs.getString("UserRole").equals("User")) {
                         //Screen role user
                         UserView userView = new UserView();
-                        userView.setVisible(true);
+                        userView.display();
                     }
                 }
             } else {
