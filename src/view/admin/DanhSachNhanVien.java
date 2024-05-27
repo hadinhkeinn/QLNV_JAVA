@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 public class DanhSachNhanVien extends javax.swing.JPanel {
     
     private static String dataColumn[] = {"Mã NV", "Họ tên", "Dân tộc", "Giới tính", "Quê quán", "Ngày sinh", "SĐT"};
-    private DefaultTableModel model;
+    private DefaultTableModel tableDsNvModel;
     /**
      * Creates new form DanhSachNhanVien
      */
