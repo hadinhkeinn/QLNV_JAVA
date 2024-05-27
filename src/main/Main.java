@@ -9,6 +9,7 @@ import model.NhanVienDAO;
 import view.admin.Home;
 import view.admin.MainView;
 import view.admin.TrangChu;
+import view.login.DangNhap;
 
 /**
  *
@@ -24,7 +25,9 @@ public class Main {
         // TODO code application logic here
 //        MainView mainView = new MainView();
 //        mainView.display();
-        Home home = new Home();
-        home.display();
+//        Home home = new Home();
+//        home.display();
+         DangNhap login = new DangNhap();
+         login.display();
     }
 }
