@@ -35,7 +35,33 @@ public class NhanVienDAO {
             }
             ConnectSQLServer.closeConnection(conn);
             return list;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static NhanVien getNV(String maNV) {
+        Connection conn = ConnectSQLServer.getConnection();
+
+        try {
+            NhanVien nv;
+            PreparedStatement pst = conn.prepareStatement("Select * from NhanVien Where MaNV = ?");
+            pst.setString(1, maNV);
+            ResultSet rs = pst.executeQuery();
+
+            String ma = rs.getString("MaNV");
+            String hoTen = rs.getString("HoTen");
+            String danToc = rs.getString("DanToc");
+            String gioiTinh = rs.getString("GioiTinh");
+            String queQuan = rs.getString("QueQuan");
+            String soDT = rs.getString("SoDienThoai");
+            String ngaySinh = rs.getString("NgaySinh").split(" ")[0];
             
+            nv = new NhanVien(ma, hoTen, danToc, gioiTinh, queQuan, ngaySinh, soDT);
+            return nv;
+                    
         } catch (SQLException e) {
             e.printStackTrace();
         }

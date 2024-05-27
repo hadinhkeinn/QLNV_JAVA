@@ -9,5 +9,21 @@ package model;
  * @author admin
  */
 public class ChucVu {
+    private String maCV;
+    private String tenCV;
+
+    public ChucVu(String maCV, String tenCV) {
+        this.maCV = maCV;
+        this.tenCV = tenCV;
+    }
+
+    public String getMaCV() {
+        return maCV;
+    }
+
+    public String getTenCV() {
+        return tenCV;
+    }
+    
     
 }
