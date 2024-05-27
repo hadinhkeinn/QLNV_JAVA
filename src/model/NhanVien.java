@@ -8,17 +8,21 @@ package model;
  *
  * @author admin
  */
-public class NhanVien implements InterfaceNhanVien {
+public class NhanVien {
 
-    protected String maNV;
-    protected String hoTen;
-    protected String danToc;
-    protected String gioiTinh;
-    protected String queQuan;
-    protected String ngaySinh;
-    protected String soDT;
+    private String maNV;
+    private String hoTen;
+    private String danToc;
+    private String gioiTinh;
+    private String queQuan;
+    private String ngaySinh;
+    private String soDT;
+    private ChucVu chucVu;
+    private PhongBan phongBan;
+    private TrinhDoHocVan trinhDo;
+    private Luong bacLuong;
 
-    public NhanVien(String maNV, String hoTen, String danToc, String gioiTinh, String queQuan, String ngaySinh, String soDT) {
+    public NhanVien(String maNV, String hoTen, String danToc, String gioiTinh, String queQuan, String ngaySinh, String soDT, ChucVu chucVu, PhongBan phongBan, TrinhDoHocVan trinhDo, Luong bacLuong) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.danToc = danToc;
@@ -26,6 +30,10 @@ public class NhanVien implements InterfaceNhanVien {
         this.queQuan = queQuan;
         this.ngaySinh = ngaySinh;
         this.soDT = soDT;
+        this.chucVu = chucVu;
+        this.phongBan = phongBan;
+        this.trinhDo = trinhDo;
+        this.bacLuong = bacLuong;
     }
 
     @Override
@@ -33,68 +41,88 @@ public class NhanVien implements InterfaceNhanVien {
         return this.maNV + " - " + this.hoTen;
     }
 
-    @Override
     public String getMaNV() {
         return this.maNV;
     }
 
-    @Override
     public String getHoTen() {
         return this.hoTen;
     }
 
-    @Override
     public String getGioiTinh() {
         return this.gioiTinh;
     }
 
-    @Override
     public String getQueQuan() {
         return this.queQuan;
     }
 
-    @Override
     public String getNgaySinh() {
         return this.ngaySinh;
     }
 
-    @Override
     public String getSoDT() {
         return this.soDT;
     }
 
-    @Override
     public void setHoTen(String ten) {
         this.hoTen = ten;
     }
 
-    @Override
     public void setGioiTinh(String gt) {
         this.gioiTinh = gt;
     }
 
-    @Override
     public void setQueQuan(String qq) {
         this.queQuan = qq;
     }
 
-    @Override
     public void setNgaySinh(String ns) {
         this.ngaySinh = ns;
     }
-
-    @Override
+    
     public void setSoDT(String sdt) {
         this.soDT = sdt;
     }
-
-    @Override
+    
     public String getDanToc() {
         return this.danToc;
     }
-
-    @Override
+    
     public void setDanToc(String dt) {
         this.danToc = dt;
     }
+    
+    public ChucVu getChucVu() {
+        return this.chucVu;
+    }
+
+    public PhongBan getPhongBan() {
+        return phongBan;
+    }
+
+    public Luong getBacLuong() {
+        return bacLuong;
+    }
+
+    public TrinhDoHocVan getTrinhDo() {
+        return trinhDo;
+    }
+
+    public void setBacLuong(Luong bacLuong) {
+        this.bacLuong = bacLuong;
+    }
+
+    public void setChucVu(ChucVu chucVu) {
+        this.chucVu = chucVu;
+    }
+
+    public void setPhongBan(PhongBan phongBan) {
+        this.phongBan = phongBan;
+    }
+
+    public void setTrinhDo(TrinhDoHocVan trinhDo) {
+        this.trinhDo = trinhDo;
+    }
+    
 }

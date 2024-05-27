@@ -7,7 +7,11 @@ package DAO;
 import java.util.ArrayList;
 import java.sql.*;
 import DataBaseConnection.ConnectSQLServer;
+import model.ChucVu;
+import model.Luong;
 import model.NhanVien;
+import model.PhongBan;
+import model.TrinhDoHocVan;
 
 /**
  *
@@ -21,7 +25,7 @@ public class NhanVienDAO {
         try {
             ArrayList<NhanVien> list = new ArrayList<>();
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("Select * from NhanVien");
+            ResultSet rs = st.executeQuery("Select * from NhanVien NV join ChucVu CV on NV.MaCV = CV.MaCV join PhongBan PB on NV.MaPB = PB.MaPB join TrinhDoHocVan TD on NV.MaTDHV = TD.MaTDHV join Luong on NV.BacLuong = Luong.BacLuong");
             while (rs.next()) {
                 String maNV = rs.getString("MaNV");
                 String hoTen = rs.getString("HoTen");
@@ -30,7 +34,11 @@ public class NhanVienDAO {
                 String queQuan = rs.getString("QueQuan");
                 String soDT = rs.getString("SoDienThoai");
                 String ngaySinh = rs.getString("NgaySinh").split(" ")[0];
-                NhanVien nv = new NhanVien(maNV, hoTen, danToc, gioiTinh, queQuan, ngaySinh, soDT);
+                ChucVu chucVu = new ChucVu(rs.getString("MaCV"), rs.getString("TenCV"));
+                PhongBan phong = new PhongBan(rs.getString("MaPB"), rs.getString("TenPB"), rs.getString("DiaChi"), rs.getString("SDTPB"));
+                TrinhDoHocVan trinhDo = new TrinhDoHocVan(rs.getString("MaTDHV"), rs.getString("TenTDHV"), rs.getString("CNganh"));
+                Luong luong = new Luong(rs.getString("BacLuong"), rs.getFloat("LuongCB"), rs.getFloat("HSLuong"), rs.getFloat("HSPhuCap"));
+                NhanVien nv = new NhanVien(maNV, hoTen, danToc, gioiTinh, queQuan, ngaySinh, soDT, chucVu, phong, trinhDo, luong);
                 list.add(nv);
             }
             ConnectSQLServer.closeConnection(conn);
@@ -47,7 +55,7 @@ public class NhanVienDAO {
 
         try {
             NhanVien nv;
-            PreparedStatement pst = conn.prepareStatement("Select * from NhanVien Where MaNV = ?");
+            PreparedStatement pst = conn.prepareStatement("Select * from NhanVien NV join ChucVu CV on NV.MaCV = CV.MaCV join PhongBan PB on NV.MaPB = PB.MaPB join TrinhDoHocVan TD on NV.MaTDHV = TD.MaTDHV join Luong on NV.BacLuong = Luong.BacLuong Where MaNV = ?");
             pst.setString(1, maNV);
             ResultSet rs = pst.executeQuery();
 
@@ -58,13 +66,38 @@ public class NhanVienDAO {
             String queQuan = rs.getString("QueQuan");
             String soDT = rs.getString("SoDienThoai");
             String ngaySinh = rs.getString("NgaySinh").split(" ")[0];
-            
-            nv = new NhanVien(ma, hoTen, danToc, gioiTinh, queQuan, ngaySinh, soDT);
+            ChucVu chucVu = new ChucVu(rs.getString("MaCV"), rs.getString("TenCV"));
+            PhongBan phong = new PhongBan(rs.getString("MaPB"), rs.getString("TenPB"), rs.getString("DiaChi"), rs.getString("SDTPB"));
+            TrinhDoHocVan trinhDo = new TrinhDoHocVan(rs.getString("MaTDHV"), rs.getString("TenTDHV"), rs.getString("CNganh"));
+            Luong luong = new Luong(rs.getString("BacLuong"), rs.getFloat("LuongCB"), rs.getFloat("HSLuong"), rs.getFloat("HSPhuCap"));
+            nv = new NhanVien(ma, hoTen, danToc, gioiTinh, queQuan, ngaySinh, soDT, chucVu, phong, trinhDo, luong);
             return nv;
-                    
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void insertNV(NhanVien nv) {
+        Connection conn = ConnectSQLServer.getConnection();
+
+        try {
+            PreparedStatement pst = conn.prepareStatement("Insert NhanVien values(?,?,?,?,?,?,?,?,?,?,?)");
+            pst.setString(1, nv.getMaNV());
+            pst.setString(2, nv.getHoTen());
+            pst.setString(3, nv.getDanToc());
+            pst.setString(4, nv.getGioiTinh());
+            pst.setString(5, nv.getQueQuan());
+            pst.setString(6, nv.getNgaySinh());
+            pst.setString(7, nv.getSoDT());
+            pst.setString(8, nv.getChucVu().getMaCV());
+            pst.setString(9, nv.getPhongBan().getMaPB());
+            pst.setString(10, nv.getTrinhDo().getMaTD());
+            pst.setString(11, nv.getBacLuong().getBacLuong());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
