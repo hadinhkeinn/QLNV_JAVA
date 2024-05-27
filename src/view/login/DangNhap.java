@@ -9,6 +9,7 @@ import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import model.TaiKhoan;
 import view.admin.TrangChu;
 import view.user.UserView;
 //import view.user.Home;
@@ -18,7 +19,7 @@ import view.user.UserView;
  * @author DELL
  */
 public class DangNhap extends javax.swing.JFrame {
-
+    private TaiKhoan taiKhoan;
     /**
      * Creates new form DangNhap
      */
@@ -164,6 +165,7 @@ public class DangNhap extends javax.swing.JFrame {
             if (rs.next()) {
                 if (tenTK.equals(rs.getString("TenTK")) && matKhau.equals(rs.getString("MatKhau"))) {
                     JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    taiKhoan = new TaiKhoan(rs.getString("MaTK"), tenTK, rs.getString("MaNV"), rs.getString("UserRole"));
                     if (rs.getString("UserRole").equals("Admin")) {
                         TrangChu home = new TrangChu();
                         home.display();
@@ -177,6 +179,7 @@ public class DangNhap extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Tên người dùng hoặc mật khẩu không chính xác!", "Đăng nhập thất bại", JOptionPane.ERROR_MESSAGE);
             }
+            ConnectSQLServer.closeConnection(conn);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -226,6 +229,10 @@ public class DangNhap extends javax.swing.JFrame {
                 login.setVisible(true);
             }
         });
+    }
+    
+    public TaiKhoan getTaiKhoan() {
+        return this.taiKhoan;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

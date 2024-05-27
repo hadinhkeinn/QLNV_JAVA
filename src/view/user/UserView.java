@@ -4,12 +4,13 @@
  */
 package view.user;
 
+import model.TaiKhoan;
+
 /**
  *
  * @author admin
  */
 public class UserView extends javax.swing.JFrame {
-
     /**
      * Creates new form Home
      */

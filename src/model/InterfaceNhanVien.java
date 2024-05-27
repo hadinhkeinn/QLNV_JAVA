@@ -12,12 +12,14 @@ public interface InterfaceNhanVien {
 //    double tinhLuong();
     String getMaNV();
     String getHoTen();
+    String getDanToc();
     String getGioiTinh();
     String getQueQuan();
     String getNgaySinh();
     String getSoDT();
     
     void setHoTen(String ten);
+    void setDanToc(String dt);
     void setGioiTinh(String gt);
     void setQueQuan(String qq);
     void setNgaySinh(String ns);

@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package DAO;
 
 import java.util.ArrayList;
 import java.sql.*;
 import DataBaseConnection.ConnectSQLServer;
+import model.NhanVien;
 
 /**
  *
@@ -28,7 +29,8 @@ public class NhanVienDAO {
                 String gioiTinh = rs.getString("GioiTinh");
                 String queQuan = rs.getString("QueQuan");
                 String soDT = rs.getString("SoDienThoai");
-                NhanVien nv = new NhanVien(maNV, hoTen, danToc, gioiTinh, queQuan, gioiTinh, soDT);
+                String ngaySinh = rs.getString("NgaySinh").split(" ")[0];
+                NhanVien nv = new NhanVien(maNV, hoTen, danToc, gioiTinh, queQuan, ngaySinh, soDT);
                 list.add(nv);
             }
             ConnectSQLServer.closeConnection(conn);

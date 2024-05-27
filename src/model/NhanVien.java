@@ -87,4 +87,14 @@ public class NhanVien implements InterfaceNhanVien {
     public void setSoDT(String sdt) {
         this.soDT = sdt;
     }
+
+    @Override
+    public String getDanToc() {
+        return this.danToc;
+    }
+
+    @Override
+    public void setDanToc(String dt) {
+        this.danToc = dt;
+    }
 }

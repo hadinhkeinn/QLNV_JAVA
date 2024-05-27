@@ -5,6 +5,7 @@
 package main;
 
 import java.sql.SQLException;
+import view.admin.TrangChu;
 import view.login.DangNhap;
 
 /**
