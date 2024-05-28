@@ -4,12 +4,24 @@
  */
 package view.admin;
 
+import DAO.ChamCongTongHopDAO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.ChamCongTongHop;
+import model.NhanVien;
+import utils.LoadDuLieuTable;
+
 /**
  *
  * @author admin
  */
 public class TinhLuong extends javax.swing.JPanel {
-    
+
+    private static String dataColumn[] = {"Mã NV", "Họ tên", "Lương CB", "Hệ Số Lương", "Hệ Số Phụ cấp", "Số ngày làm", "Số sản phẩm", "Lương tháng"};
+    private DefaultTableModel tableTinhLuongModel;
+    private ArrayList<ChamCongTongHop> dataList;
+
     /**
      * Creates new form TinhLuong
      */
@@ -26,19 +38,161 @@ public class TinhLuong extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        thangCbBox = new javax.swing.JComboBox<>();
+        namCbBox = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        thongTinLuongTable = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        tinhLuongBtn = new javax.swing.JButton();
+        loadBtn = new javax.swing.JButton();
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("TÍNH LƯƠNG NHÂN VIÊN");
+
+        thangCbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+
+        namCbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        namCbBox.setSelectedIndex(4);
+
+        thongTinLuongTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(thongTinLuongTable);
+
+        jLabel2.setText("Tháng");
+
+        jLabel3.setText("Năm");
+
+        tinhLuongBtn.setBackground(new java.awt.Color(51, 204, 0));
+        tinhLuongBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tinhLuongBtn.setForeground(new java.awt.Color(255, 255, 255));
+        tinhLuongBtn.setText("Tính lương");
+        tinhLuongBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tinhLuongBtnActionPerformed(evt);
+            }
+        });
+
+        loadBtn.setText("Load");
+        loadBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(thangCbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(namCbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(58, 58, 58))
+                            .addComponent(jLabel1))
+                        .addGap(181, 181, 181)
+                        .addComponent(loadBtn))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(29, 29, 29)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(392, 392, 392)
+                            .addComponent(tinhLuongBtn))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(thangCbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(namCbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(loadBtn))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(tinhLuongBtn)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tinhLuongBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tinhLuongBtnActionPerformed
+        // TODO add your handling code here:
+
+        if (dataList.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Chưa có dữ liệu để tính lương!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (dataList.get(0).getLuongThang() != 0) {
+                JOptionPane.showMessageDialog(this, "Lương tháng này đã được tính!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+
+                final float luongTheoNgay = 200_000;
+                final float hoaHong = 20_000;
+                for (ChamCongTongHop cc : this.dataList) {
+                    NhanVien nv = cc.getNhanVien();
+                    float luongCB = nv.getBacLuong().getLuongCB();
+                    float hsLuong = nv.getBacLuong().getHsLuong();
+                    float hsPC = nv.getBacLuong().getHsPhuCap();
+
+                    float luongThang = luongCB * hsLuong + hsPC * luongCB + cc.getSoNgayLam() * luongTheoNgay + cc.getSoSP() * hoaHong;
+
+                    ChamCongTongHopDAO.capNhatLuongThang(cc.getNhanVien().getMaNV(), cc.getThang(), cc.getNam(), luongThang);
+                }
+                JOptionPane.showMessageDialog(this, "Tính lương thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                loadTableData();
+            }
+        }
+    }//GEN-LAST:event_tinhLuongBtnActionPerformed
+
+    private void loadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBtnActionPerformed
+        // TODO add your handling code here:
+        loadTableData();
+    }//GEN-LAST:event_loadBtnActionPerformed
+
+    public void loadTableData() {
+        String thang = thangCbBox.getSelectedItem().toString();
+        String nam = namCbBox.getSelectedItem().toString();
+        dataList = ChamCongTongHopDAO.getBangLuong(thang, nam);
+
+        Object[][] data = LoadDuLieuTable.loadDuLieuTinhLuong(dataList);
+        tableTinhLuongModel = new DefaultTableModel(data, dataColumn);
+        thongTinLuongTable.setModel(tableTinhLuongModel);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton loadBtn;
+    private javax.swing.JComboBox<String> namCbBox;
+    private javax.swing.JComboBox<String> thangCbBox;
+    private javax.swing.JTable thongTinLuongTable;
+    private javax.swing.JButton tinhLuongBtn;
     // End of variables declaration//GEN-END:variables
 }

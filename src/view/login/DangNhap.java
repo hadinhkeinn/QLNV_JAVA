@@ -4,6 +4,7 @@
  */
 package view.login;
 
+import DAO.NhanVienDAO;
 import DataBaseConnection.ConnectSQLServer;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
@@ -165,7 +166,7 @@ public class DangNhap extends javax.swing.JFrame {
             if (rs.next()) {
                 if (tenTK.equals(rs.getString("TenTK")) && matKhau.equals(rs.getString("MatKhau"))) {
                     JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                    taiKhoan = new TaiKhoan(rs.getString("MaTK"), tenTK, rs.getString("MaNV"), rs.getString("UserRole"));
+                    taiKhoan = new TaiKhoan(rs.getString("MaTK"), tenTK, NhanVienDAO.getNV(rs.getString("MaNV")), rs.getString("UserRole"));
                     if (rs.getString("UserRole").equals("Admin")) {
                         TrangChu home = new TrangChu();
                         home.display();

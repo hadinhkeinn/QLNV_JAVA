@@ -11,18 +11,18 @@ package model;
 public class TaiKhoan {
     private String maTK;
     private String tenTK;
-    private String maNV;
+    private NhanVien nv;
     private String role;
 
-    public TaiKhoan(String maTK, String tenTK, String maNV, String role) {
+    public TaiKhoan(String maTK, String tenTK, NhanVien nv, String role) {
         this.maTK = maTK;
         this.tenTK = tenTK;
-        this.maNV = maNV;
+        this.nv = nv;
         this.role = role;
     }
 
-    public String getMaNV() {
-        return maNV;
+    public NhanVien getNv() {
+        return nv;
     }
 
     public String getMaTK() {
@@ -32,4 +32,9 @@ public class TaiKhoan {
     public String getTenTK() {
         return tenTK;
     }
+
+    public void setNv(NhanVien nv) {
+        this.nv = nv;
+    }
+    
 }

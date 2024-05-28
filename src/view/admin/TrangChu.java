@@ -13,6 +13,7 @@ public class TrangChu extends javax.swing.JFrame {
     private DanhSachNhanVien dsnvView;
     private ThemNhanVien themNvView;
     private TinhLuong tinhLuongView;
+    private CapNhatNhanVien capNhatNVView;
     private javax.swing.JTabbedPane tabAdmin;
 
     public TrangChu() {
@@ -23,6 +24,7 @@ public class TrangChu extends javax.swing.JFrame {
         dsnvView = new DanhSachNhanVien();
         tinhLuongView = new TinhLuong();
         themNvView = new ThemNhanVien();
+        capNhatNVView = new CapNhatNhanVien();
         tabAdmin = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -31,6 +33,7 @@ public class TrangChu extends javax.swing.JFrame {
         tabAdmin.addTab("DS Nhân Viên", dsnvView);
         tabAdmin.addTab("Tính lương", tinhLuongView);
         tabAdmin.addTab("Thêm NV", themNvView);
+        tabAdmin.addTab("Cập nhật thông tin NV", capNhatNVView);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
