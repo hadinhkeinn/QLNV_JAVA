@@ -55,4 +55,15 @@ public class LoadDuLieuTable {
         }
         return data;
     }
+
+    public static Object[][] loadDuLieuBangLuong(ArrayList<Object[]> dataList) {
+        Object[][] data = new Object[dataList.size()][];
+        DecimalFormat df = new DecimalFormat("#");
+        df.setMaximumFractionDigits(0);
+        for (int i = 0; i < dataList.size(); i++) {
+            Object[] row = dataList.get(i);
+            data[i] = row;
+        }
+        return data;
+    }
 }

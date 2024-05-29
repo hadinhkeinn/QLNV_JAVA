@@ -20,9 +20,8 @@ public class Main {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-//         DangNhap login = new DangNhap();
-//         login.display();
-        TrangChu home = new TrangChu();
-        home.display();
+         DangNhap login = new DangNhap();
+         login.display();
+         
     }
 }

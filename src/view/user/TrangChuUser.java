@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package view.admin;
+package view.user;
 
 import model.TaiKhoan;
 
@@ -10,43 +10,39 @@ import model.TaiKhoan;
  *
  * @author admin
  */
-public class TrangChu extends javax.swing.JFrame {
+public class TrangChuUser extends javax.swing.JFrame {
 
     private DanhSachNhanVien dsnvView;
-    private ThemNhanVien themNvView;
-    private TinhLuong tinhLuongView;
-    private CapNhatNhanVien capNhatNVView;
-    private javax.swing.JTabbedPane tabAdmin;
-    private TaiKhoan taiKhoanAdmin = null;
+    private ThongTinNhanVien thongtinNVView;
+    private javax.swing.JTabbedPane tabUser;
+    private TaiKhoan taiKhoanUser;
 
-    public TrangChu() {
+    public TrangChuUser(TaiKhoan tk) {
+        this.taiKhoanUser = tk;
         initComponent();
     }
 
     private void initComponent() {
         dsnvView = new DanhSachNhanVien();
-        tinhLuongView = new TinhLuong();
-        themNvView = new ThemNhanVien();
-        capNhatNVView = new CapNhatNhanVien();
-        tabAdmin = new javax.swing.JTabbedPane();
+        thongtinNVView = new ThongTinNhanVien(taiKhoanUser);
+        thongtinNVView.setTaiKhoan(taiKhoanUser);
+        tabUser = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Quản lí nhân viên");
+        setTitle("Trang thông tin dành cho nhân viên");
 
-        tabAdmin.addTab("DS Nhân Viên", dsnvView);
-        tabAdmin.addTab("Tính lương", tinhLuongView);
-        tabAdmin.addTab("Thêm NV", themNvView);
-        tabAdmin.addTab("Cập nhật thông tin NV", capNhatNVView);
+        tabUser.addTab("DS Nhân Viên", dsnvView);
+        tabUser.addTab("Thông tin nhân viên", thongtinNVView);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(tabAdmin)
+                        .addComponent(tabUser)
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(tabAdmin)
+                        .addComponent(tabUser)
         );
         pack();
     }
@@ -60,25 +56,28 @@ public class TrangChu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrangChuUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrangChuUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrangChuUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TrangChuUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TrangChu().setVisible(true);
+                new TrangChuUser(taiKhoanUser).setVisible(true);
             }
         });
     }
-    
+
     public void setTaiKhoan(TaiKhoan tk) {
-        this.taiKhoanAdmin = tk;
+        this.taiKhoanUser = tk;
     }
 }

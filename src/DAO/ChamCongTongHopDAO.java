@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import model.ChamCongTongHop;
 import model.ChucVu;
@@ -69,5 +70,39 @@ public class ChamCongTongHopDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static ArrayList<Object[]> getBangLuongNV(String _maNV, String thang, String nam) {
+        Connection conn = ConnectSQLServer.getConnection();
+        DecimalFormat df = new DecimalFormat("#");
+        df.setMaximumFractionDigits(0);
+        try {
+            ArrayList<Object[]> kq = new ArrayList<>();
+            if (thang.equals("Tất cả")) {
+                PreparedStatement pst = conn.prepareStatement("Select * from ChamCongTongHop where MaNV = ? and Nam = ?");
+                pst.setString(1, _maNV);
+                pst.setString(2, nam);
+                ResultSet rs = pst.executeQuery();
+                int i = 1;
+                while (rs.next()) {
+                    kq.add(new Object[]{i++, rs.getString("Thang"), rs.getString("Nam"), rs.getString("SoNgayLam"), rs.getString("SoSanPham"), String.valueOf(df.format(rs.getFloat("LuongThang")))});
+                }
+                return kq;
+            } else {
+                PreparedStatement pst = conn.prepareStatement("Select * from ChamCongTongHop where MaNV = ? and Nam = ? and Thang = ?");
+                pst.setString(1, _maNV);
+                pst.setString(2, nam);
+                pst.setString(3, thang);
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    kq.add(new Object[]{1, rs.getString("Thang"), rs.getString("Nam"), rs.getString("SoNgayLam"), rs.getString("SoSanPham"), String.valueOf(df.format(rs.getFloat("LuongThang")))});
+                }
+                return kq;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
